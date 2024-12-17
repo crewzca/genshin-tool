@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin Impact tool</title>
+</head>
+
+<body>
+    <h1>原神ステータス確認ツール</h1>
+    <p> {{ status }}</p>
+    <form action="/" method="post">
+        <label for="uuid">UUID:</label>
+        <input type="text" id="uuid" name="uuid" value="{{ uuid }}">
+        <button type="submit">プレイヤーデータを取得</button>
+    </form>
+</body>
+
+</html>
