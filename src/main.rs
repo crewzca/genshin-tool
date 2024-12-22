@@ -1,5 +1,7 @@
 mod config;
-pub mod controller;
+mod controller;
+mod entity;
+mod model;
 
 use crate::config::config_app;
 use actix_web::{middleware::Logger, web, App, HttpServer};
