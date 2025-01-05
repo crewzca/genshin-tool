@@ -26,9 +26,22 @@ pub async fn get_index(tera: web::Data<Tera>) -> impl Responder {
 
 pub async fn post_index(tera: web::Data<Tera>, form: web::Form<FormData>) -> impl Responder {
     info!("POST -start");
-    let status = form.status.as_deref().unwrap_or("UUIDの書式が不正です");
+    let status = form.status.as_deref().unwrap_or("");
     let uuid = form.uuid.as_deref().unwrap_or("");
     let mut context = Context::new();
+    context.insert("status", &status);
+    context.insert("uuid", &uuid);
+    context.insert("nickname", "");
+    context.insert("level", "");
+
+    if uuid.len() != 9 || uuid.parse::<u32>().is_err() {
+        context.insert("status", "UUIDの書式が不正です");
+        info!("UUIDバリエーションエラー UUID:{}", uuid);
+        let renda = tera
+            .render("top.html", &context)
+            .expect("Teraのレンダリングに失敗しました");
+        HttpResponse::Ok().content_type("text/html").body(renda);
+    }
 
     match connect_api(&uuid).await {
         Ok(response) => {
@@ -39,13 +52,11 @@ pub async fn post_index(tera: web::Data<Tera>, form: web::Form<FormData>) -> imp
             }
         }
         Err(e) => {
-            context.insert("nickname", "");
-            error!("{}", e)
+            context.insert("status", "UUIDの書式が不正です");
+
+            error!("API接続エラー：{}", e);
         }
     }
-
-    context.insert("status", &status);
-    context.insert("uuid", &uuid);
 
     let renda = tera
         .render("top.html", &context)
