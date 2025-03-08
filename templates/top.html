@@ -12,11 +12,12 @@
     <p> {{ status }}</p>
     <form action="/" method="post">
         <label for="uuid">UUID:</label>
-        <input type="text" id="uuid" name="uuid" value="{{ uuid }}">
+        <input type="number" id="uuid" name="uuid" value="{{ uuid }}">
         <button type="submit">プレイヤーデータを取得</button>
     </form>
-    <h2>プレイヤー名：{{ nickname }}</h2>
-    <p>冒険ランク：{{ level }}</p>
+    <h2>プレイヤー名：{{ user.nickname }}</h2>
+    <p>冒険ランク：{{ user.level }}</p>
+
 </body>
 
 </html>
