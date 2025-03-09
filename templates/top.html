@@ -15,9 +15,23 @@
         <input type="number" id="uuid" name="uuid" value="{{ uuid }}">
         <button type="submit">プレイヤーデータを取得</button>
     </form>
-    <h2>プレイヤー名：{{ user.nickname }}</h2>
-    <p>冒険ランク：{{ user.level }}</p>
 
+    {% if res != "3024" %}
+    <h2>プレイヤー名：{{ res.playerInfo.nickname }}</h2>
+    <p>冒険ランク：{{ res.playerInfo.level }}</p>
+    {% for chara in res.avatarInfoList %}
+    <table>
+        <tr>
+            <td>キャラ名(ID)</td>
+            <td>{{ chara.avatarId }}</td>
+        </tr>
+        <tr>
+            <td>攻撃力</td>
+            <td>{{ chara.fightPropMap.2001 | round }}</td>
+        </tr>
+    </table>
+    {% endfor %}
+    {% endif %}
 </body>
 
 </html>
