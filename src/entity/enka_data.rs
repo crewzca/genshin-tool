@@ -13,24 +13,38 @@ pub struct Resbody {
 pub struct PlayerInfo {
     pub nickname: String,
     pub level: u32,
-    #[serde(rename = "showAvatarInfoList", default)]
-    pub show_avatar_info_list: Vec<ShowAvatarInfoList>,
 }
 
 #[derive(Deserialize, Serialize, Debug)]
 pub struct AvatarInfoList {
-    pub avatarId: u32,
+    #[serde(rename = "avatarId")]
+    pub avatar_id: u32,
+    #[serde(default)]
+    pub chara_name: String,
     #[serde(rename = "fightPropMap")]
     pub fight_prop_map: FightPropMap,
+    #[serde(rename = "propMap")]
+    pub prop_map: PropMap,
+    #[serde(rename = "talentIdList", default)]
+    pub talent_id_list: Vec<u32>,
+}
+
+#[derive(Deserialize, Serialize, Debug)]
+pub struct PropMap {
+    #[serde(rename = "4001")]
+    pub clevel: Val,
+}
+
+#[derive(Deserialize, Serialize, Debug)]
+pub struct Val {
+    pub val: String,
 }
 
 #[derive(Deserialize, Serialize, Debug)]
 pub struct ShowAvatarInfoList {
-    #[serde(default)]
-    pub chara_name: String,
     pub level: u32,
-    #[serde(default)]
-    pub talentLevel: u32,
+    #[serde(rename = "talentLevel", default)]
+    pub talent_level: u32,
 }
 
 #[derive(Deserialize, Serialize, Debug)]

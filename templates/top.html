@@ -22,11 +22,11 @@
     {% for chara in res.avatarInfoList %}
     <table>
         <tr>
-            <td>キャラ名(ID)</td>
-            <td>{{ chara.avatarId }}</td>
+            <td>キャラ名：</td>
+            <td>{{ chara.chara_name | default(value="未定義のキャラクター") }}</td>
         </tr>
         <tr>
-            <td>攻撃力</td>
+            <td>攻撃力：</td>
             <td>{{ chara.fightPropMap.2001 | round }}</td>
         </tr>
     </table>
