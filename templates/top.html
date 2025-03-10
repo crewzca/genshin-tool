@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
     <title>Genshin Impact tool</title>
 </head>
 
@@ -19,6 +20,15 @@
     {% if res != "3024" %}
     <h2>プレイヤー名：{{ res.playerInfo.nickname }}</h2>
     <p>冒険ランク：{{ res.playerInfo.level }}</p>
+    <table class="icon-menu">
+        <tr>
+            {% for chara in res.avatarInfoList %}
+            {% set path = "static/icon/" ~ chara.icon %}
+            <td><img src={{path}} width="85%"></td>
+            {% endfor %}
+        </tr>
+    </table>
+
     {% for chara in res.avatarInfoList %}
     <table>
         <tr>

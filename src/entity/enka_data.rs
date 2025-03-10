@@ -21,6 +21,8 @@ pub struct AvatarInfoList {
     pub avatar_id: u32,
     #[serde(default)]
     pub chara_name: String,
+    #[serde(default)]
+    pub icon: String,
     #[serde(rename = "fightPropMap")]
     pub fight_prop_map: FightPropMap,
     #[serde(rename = "propMap")]
