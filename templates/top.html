@@ -30,16 +30,42 @@
     </table>
 
     {% for chara in res.avatarInfoList %}
-    <table>
-        <tr>
-            <td>キャラ名：</td>
-            <td>{{ chara.chara_name | default(value="未定義のキャラクター") }}</td>
-        </tr>
-        <tr>
-            <td>攻撃力：</td>
-            <td>{{ chara.fightPropMap.2001 | round }}</td>
-        </tr>
-    </table>
+    <div class="status_table{{ loop.index }} status_table_all">
+        <table>
+            <tr>
+                <td>キャラ名：</td>
+                <td>{{ chara.chara_name | default(value="未定義のキャラクター") }}</td>
+            </tr>
+            <tr>
+                <td>HP：</td>
+                <td>{{ chara.fightPropMap.2000 | round }}</td>
+            </tr>
+            <tr>
+                <td>攻撃力：</td>
+                <td>{{ chara.fightPropMap.2001 | round }}</td>
+            </tr>
+            <tr>
+                <td>防御力：</td>
+                <td>{{ chara.fightPropMap.2002 | round }}</td>
+            </tr>
+            <tr>
+                <td>会心率：</td>
+                <td>{{ chara.fightPropMap.20 * 100 | round }}</td>
+            </tr>
+            <tr>
+                <td>会心ダメージ：</td>
+                <td>{{ chara.fightPropMap.22 * 100 | round }}</td>
+            </tr>
+            <tr>
+                <td>元素チャージ効率：</td>
+                <td>{{ chara.fightPropMap.23 * 100 | round }}</td>
+            </tr>
+            <tr>
+                <td>元素熟知：</td>
+                <td>{{ chara.fightPropMap.28 | round }}</td>
+            </tr>
+        </table>
+    </div>
     {% endfor %}
     {% endif %}
 </body>

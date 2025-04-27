@@ -77,7 +77,7 @@ pub struct FightPropMap {
     pub rock: f64,
     #[serde(rename = "46")]
     pub ice: f64,
-    #[serde(rename = "1010")]
+    #[serde(rename = "2000")]
     pub hp: f64,
     #[serde(rename = "2001")]
     pub atk: f64,

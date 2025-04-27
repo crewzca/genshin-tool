@@ -1,7 +1,7 @@
 use crate::model::enka_api::connect_api;
 use crate::model::id_name::id_to_name;
 use actix_web::{web, HttpResponse, Responder};
-use log::{error, info};
+use log::info;
 use serde::Deserialize;
 use tera::{Context, Tera};
 
@@ -47,9 +47,6 @@ pub async fn post_index(tera: web::Data<Tera>, form: web::Form<FormData>) -> imp
             context.insert("status", "");
             response = id_to_name(response).await;
             context.insert("res", &serde_json::json!(&response));
-            if !uuid.eq(&response.uid) {
-                error!("改ざんを検知しました");
-            }
         }
         Err(e) => {
             context.insert("status", "UUIDがありませんでした");

@@ -3,3 +3,7 @@
     border: 5px;
     max-width: 850px;
 }
+
+.status_table_all {
+    display: none;
+}
