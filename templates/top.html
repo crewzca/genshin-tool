@@ -2,72 +2,68 @@
 <html lang="jp">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
-    <title>Genshin Impact tool</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+  <title>Genshin Impact tool</title>
 </head>
 
 <body>
-    <h1>原神ステータス確認ツール</h1>
-    <p> {{ status }}</p>
-    <form action="/" method="post">
-        <label for="uuid">UUID:</label>
-        <input type="number" id="uuid" name="uuid" value="{{ uuid }}">
-        <button type="submit">プレイヤーデータを取得</button>
-    </form>
+  <h1>原神ステータス確認ツール</h1>
+  <p> {{ status }}</p>
+  <form action="/" method="post">
+    <label for="uuid">UUID:</label>
+    <input type="number" id="uuid" name="uuid" value="{{ uuid }}">
+    <button type="submit">プレイヤーデータを取得</button>
+  </form>
 
-    {% if res != "3024" %}
-    <h2>プレイヤー名：{{ res.playerInfo.nickname }}</h2>
-    <p>冒険ランク：{{ res.playerInfo.level }}</p>
-    <table class="icon-menu">
-        <tr>
-            {% for chara in res.avatarInfoList %}
-            {% set path = "static/icon/" ~ chara.icon %}
-            <td><img src={{path}} width="85%"></td>
-            {% endfor %}
-        </tr>
-    </table>
-
+  {% if res != "3024" %}
+  <h2>プレイヤー名：{{ res.playerInfo.nickname }}</h2>
+  <p>冒険ランク：{{ res.playerInfo.level }}</p>
+  <div class="icon-menu">
     {% for chara in res.avatarInfoList %}
-    <div class="status_table{{ loop.index }} status_table_all">
-        <table>
-            <tr>
-                <td>キャラ名：</td>
-                <td>{{ chara.chara_name | default(value="未定義のキャラクター") }}</td>
-            </tr>
-            <tr>
-                <td>HP：</td>
-                <td>{{ chara.fightPropMap.2000 | round }}</td>
-            </tr>
-            <tr>
-                <td>攻撃力：</td>
-                <td>{{ chara.fightPropMap.2001 | round }}</td>
-            </tr>
-            <tr>
-                <td>防御力：</td>
-                <td>{{ chara.fightPropMap.2002 | round }}</td>
-            </tr>
-            <tr>
-                <td>会心率：</td>
-                <td>{{ chara.fightPropMap.20 * 100 | round }}</td>
-            </tr>
-            <tr>
-                <td>会心ダメージ：</td>
-                <td>{{ chara.fightPropMap.22 * 100 | round }}</td>
-            </tr>
-            <tr>
-                <td>元素チャージ効率：</td>
-                <td>{{ chara.fightPropMap.23 * 100 | round }}</td>
-            </tr>
-            <tr>
-                <td>元素熟知：</td>
-                <td>{{ chara.fightPropMap.28 | round }}</td>
-            </tr>
-        </table>
-    </div>
+    {% set path = "static/image/icon/" ~ chara.icon %}
+    <button class="icon-button"><img src={{path}} class="icon" /></button>
     {% endfor %}
-    {% endif %}
+  </div>
+
+  {% for chara in res.avatarInfoList %}
+  <table class="status-table{{ loop.index }} status-table-all">
+    <tr>
+      <td>キャラ名：</td>
+      <td>{{ chara.chara_name | default(value="未定義のキャラクター") }}</td>
+    </tr>
+    <tr>
+      <td>HP：</td>
+      <td>{{ chara.fightPropMap.2000 | round }}</td>
+    </tr>
+    <tr>
+      <td>攻撃力：</td>
+      <td>{{ chara.fightPropMap.2001 | round }}</td>
+    </tr>
+    <tr>
+      <td>防御力：</td>
+      <td>{{ chara.fightPropMap.2002 | round }}</td>
+    </tr>
+    <tr>
+      <td>会心率：</td>
+      <td>{{ chara.fightPropMap.20 * 100 | round }}</td>
+    </tr>
+    <tr>
+      <td>会心ダメージ：</td>
+      <td>{{ chara.fightPropMap.22 * 100 | round }}</td>
+    </tr>
+    <tr>
+      <td>元素チャージ効率：</td>
+      <td>{{ chara.fightPropMap.23 * 100 | round }}</td>
+    </tr>
+    <tr>
+      <td>元素熟知：</td>
+      <td>{{ chara.fightPropMap.28 | round }}</td>
+    </tr>
+  </table>
+  {% endfor %}
+  {% endif %}
 </body>
 
 </html>

@@ -1,9 +1,45 @@
+body {
+    background-image: url('/static/image/bgimg.png');
+    background-position: center top;
+    background-size: auto;
+    background-color: rgba(255, 255, 255, 0.6);
+    background-blend-mode: lighten;
+
+    text-align: center;
+
+}
+
+h1 {
+    font-size: 25px;
+}
+
 .icon-menu {
     padding: 5px;
     border: 5px;
-    max-width: 850px;
+    max-width: 1600px;
 }
 
-.status_table_all {
+.icon {
+    width: 100%;
+}
+
+.icon-button {
+    background: transparent;
+    border: none;
+    width: 15%;
+    max-width: 200px;
+    min-width: 80px;
+}
+
+.icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    background-blend-mode: lighten;
+}
+
+.icon-button:hover .icon {
+    transform: scale(1.2);
+}
+
+.status-table-all {
     display: none;
 }
