@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "outDir": "../static/js", // ← 出力先ディレクトリを指定
+        "rootDir": "./src", // ← TSファイルのルート
+        "target": "ES2020", // 任意の出力JSバージョン
+        "module": "CommonJS", // Node.js用
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true
+    },
+    "include": [
+        "src"
+    ]
+}

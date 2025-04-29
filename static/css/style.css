@@ -40,6 +40,10 @@ h1 {
     transform: scale(1.2);
 }
 
-.status-table-all {
+.hide {
     display: none;
+}
+
+.appear {
+    display: block;
 }

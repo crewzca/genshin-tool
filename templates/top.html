@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+  <script src="/static/js/top.js"></script>
   <title>Genshin Impact tool</title>
 </head>
 
@@ -23,12 +24,14 @@
   <div class="icon-menu">
     {% for chara in res.avatarInfoList %}
     {% set path = "static/image/icon/" ~ chara.icon %}
-    <button class="icon-button"><img src={{path}} class="icon" /></button>
+    <button class="icon-button" onclick="changeDetail('{{ loop.index }}')">
+      <img src={{path}} class="icon" />
+    </button>
     {% endfor %}
   </div>
 
   {% for chara in res.avatarInfoList %}
-  <table class="status-table{{ loop.index }} status-table-all">
+  <table class="status-table-all hide" id="status-table{{ loop.index }}">
     <tr>
       <td>キャラ名：</td>
       <td>{{ chara.chara_name | default(value="未定義のキャラクター") }}</td>
